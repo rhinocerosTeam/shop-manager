@@ -4,9 +4,8 @@
 
 import {userDB} from '../db/user'
 export default class UserControl {
-
-  async addUser(){
-    await userDB.insertUser()
+  async addUser(data){
+    await userDB.insertUser(data)
   }
 }
 export const userCtrl = new UserControl()
