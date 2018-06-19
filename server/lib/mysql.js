@@ -174,22 +174,6 @@ let findCommentLength = function(id){
 
 
 module.exports={
-  query,
-  createTable,
-  insertData,
-  findDataByName,
-  insertPost,
-  findAllPost,
-  findDataByUser,
-  findDataById,
-  insertComment,
-  findCommentById,
-  updatePost,
-  deletePost,
-  deleteComment,
-  findCommentLength,
-  updatePostComment,
-  deleteAllPostComment,
-  updatePostPv
+  query
 }
 
