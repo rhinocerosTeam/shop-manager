@@ -39,6 +39,7 @@ let query = function( sql, values ) {
   })
 
 }
+/*
 
 users=
   `create table if not exists users(
@@ -172,6 +173,7 @@ let findCommentLength = function(id){
 }
 
 
+*/
 
 module.exports={
   query

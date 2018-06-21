@@ -7,7 +7,7 @@ export default class UserDB {
 
   /*创建用户*/
   async insertUser(value){
-    await query('insert into users(name,pass) values(?,?);',value)
+    return await query('insert into users(name,password) values(?,?);',value)
   }
 }
 export const userDB = new UserDB()
