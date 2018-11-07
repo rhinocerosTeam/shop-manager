@@ -7,5 +7,8 @@ export default class UserControl {
   async addUser(data){
    return  await userDB.insertUser(data)
   }
+
+
+
 }
 export const userCtrl = new UserControl()
