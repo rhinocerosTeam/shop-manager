@@ -12,9 +12,7 @@
                     <span>欢迎登录盒饭商家商城</span>
                 </div>
                 <div class='form'>
-                    <loginInput placeholder='请输入手机号' v-model="loginInfo.mobile" type='number' maxlength='11'>
-
-                    </loginInput>
+                    <loginInput placeholder='请输入手机号' v-model="loginInfo.mobile" type='number' maxlength='11'></loginInput>
                     <loginInput placeholder='请输入验证码' v-model="loginInfo.crod" class=' lastInput ' hasBtn=true v-show='!userPassowrdLogin
   '>
                         <template slot="prend">
@@ -32,9 +30,7 @@
                     <div class='errTip' v-if='errorInfo' v-text='errorInfo'></div>
                 </div>
 
-                <div class='btn loginInBtn' @click='loginIn'>
-
-                </div>
+                <div class='btn loginInBtn' @click='loginIn'></div>
 
                 <div class='agree'>
                     <i class="el-icon-circle-check" :class='{sel:agree}' @click='checkChange'></i>
@@ -451,12 +447,12 @@
                     return
                 }
 
-                let data = {}
+                let data = {code:1000,data:{token:1234,consume:1234}}
                 this.loading()
                 if (this.userPassowrdLogin) {
-                    data = await this.loginByPassword()
+                  //  data = await this.loginByPassword()
                 } else {
-                    data = await this.loginByCrod()
+                   // data = await this.loginByCrod()
                 }
                 if (data) {
                     if (data.code == 1000) {
@@ -468,38 +464,31 @@
                         this.setUserInfo({
                             token: data.data.token
                         })
-                        // let userInfo = await api.getUser().catch((err) => {
-                        //   this.$message.error('获取用户信息失败');
-                        // })
-                        // if (userInfo) {
-                        //   if (userInfo.code == 1000) {
-                        //     if (userInfo.data.user) this.setUserInfo(userInfo.data.user)
-                        //   }
-                        // }
-                        if (!this.userPassowrdLogin) {
-                            if (!data.data.setPwdFlag) {
-                                this.setPassword = {
-                                    passwordFrist: "",
-                                    passwordSecond: ""
-                                }
-                                this.type = 2
-                                this.$message.success('您还未设置密码，请设置！');
-                            } else {
-                                this.noticing = true
-                                this.$message.success('登录成功');
-                                setTimeout(() => {
-                                    this.noticing = false;
-                                    this.$router.push('/mailList')
-                                }, 1000);
-                            }
-                        } else {
+
+//                        if (!this.userPassowrdLogin) {
+//                            if (!data.data.setPwdFlag) {
+//                                this.setPassword = {
+//                                    passwordFrist: "",
+//                                    passwordSecond: ""
+//                                }
+//                                this.type = 2
+//                                this.$message.success('您还未设置密码，请设置！');
+//                            } else {
+//                                this.noticing = true
+//                                this.$message.success('登录成功');
+//                                setTimeout(() => {
+//                                    this.noticing = false;
+//                                    this.$router.push('/mailList')
+//                                }, 1000);
+//                            }
+//                        } else {
                             this.noticing = true
                             this.$message.success('登录成功');
                             setTimeout(() => {
                                 this.noticing = false;
                                 this.$router.push('/mailList')
                             }, 1000);
-                        }
+//                        }
                     } else if (data.code == 4050) {
                         this.errorInfo = '找不到该用户'
                     } else {

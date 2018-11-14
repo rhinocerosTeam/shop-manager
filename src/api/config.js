@@ -3,13 +3,18 @@
  */
 // 'http://apidoc.hefantv.com/mock';
 
+// export const API_HOST = (process.env.NODE_ENV === 'production') ?
+//
+//   'https://apidian.hefantv.com/pubapi/diangw' : (process.env.NODE_ENV === 'preproduction' ?
+//     'https://apidian.adposter.cn/pubapi/diangw' : (process.env.NODE_ENV === 'testing' ?
+//       'https://testerapidian.hefantv.com/pubapi/diangw' :
+//       // '//testmall.hefantv.com' :
+//       'https://devapidian.hefantv.com/pubapi/diangw'))
+
 export const API_HOST = (process.env.NODE_ENV === 'production') ?
 
-  'https://apidian.hefantv.com/pubapi/diangw' : (process.env.NODE_ENV === 'preproduction' ?
-    'https://apidian.adposter.cn/pubapi/diangw' : (process.env.NODE_ENV === 'testing' ?
-      'https://testerapidian.hefantv.com/pubapi/diangw' :
-      // '//testmall.hefantv.com' :
-      'https://devapidian.hefantv.com/pubapi/diangw'))
+  'https://apidian.hefantv.com/pubapi/diangw' : 'http://127.0.0.1:7001'
+
 
 export const MALL_HTML_LINK = (process.env.NODE_ENV === 'production') ?
   '//mall.hefantv.com' : (process.env.NODE_ENV === 'preproduction' ?
