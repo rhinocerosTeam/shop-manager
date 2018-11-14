@@ -1,15 +1,14 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+/**
+ * Created by Cray on 2017/1/4.
+ */
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import phoneRouter from './phoneRouter';
 
-Vue.use(Router)
+Vue.use(VueRouter);
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
-})
+const router = new VueRouter({
+  routes:[...phoneRouter]
+});
+
+export default router;

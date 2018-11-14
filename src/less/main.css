@@ -1,0 +1,44 @@
+html {
+  font-size: .4px !important;
+}
+.main {
+  margin-left: 220px;
+  background: #f5f2f2;
+  padding: 15px;
+  min-width: 1000px;
+}
+.bg-white {
+  background: #fff;
+  padding: 10px;
+}
+.bg-white .ivu-select-dropdown {
+  z-index: 1000;
+}
+.bg-white .ivu-form-item-content {
+  line-height: 20px;
+}
+.bg-white .ivu-form-item:after,
+.bg-white .ivu-form-item:before {
+  display: inline;
+}
+.bg-white .starRed {
+  display: inline-block;
+  margin-right: 4px;
+  padding-top: 10px;
+  line-height: 1;
+  font-family: SimSun;
+  float: left;
+  font-size: 12px;
+  color: #ed3f14;
+}
+.bg-white .ivu-table-cell {
+  padding: 0 5px;
+}
+.ivu-tooltip-inner {
+  max-width: 100%;
+}
+/** 编辑页面底部按钮 **/
+.editBtn_box {
+  margin-top: 40px;
+  text-align: center;
+}
