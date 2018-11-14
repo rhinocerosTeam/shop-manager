@@ -1,72 +1,34 @@
 /**
  * Created by Administrator on 2017/1/11.
  */
-import Local from 'utils/local';
 
 export default {
-  SHOW_ALERT (state, options){
-    options.show = true;
-    state.alert = options;
-  },
 
-  HIDE_ALERT(state) {
-    state.alert.show = false;
+  //设置登陆信息
+  SET_LOGININ(state, data) {
+    state.userInfo = _.merge({}, state.userInfo, data)
+    state.isLogin = true
   },
-
-  /**
-   * 设置登录信息
-   * @param state
-   * @param data
-   * @constructor
-   */
-  SET_USER_INFO (state, data) {
-    state.userInfo.username = data.loginName;
-    state.userInfo.id = data.id;
-    state.userInfo.firstLogin = data.firstLogin == "0" ? true : false;
-    Local.setItem('vuex', state);
+  //登出
+  SET_LOGINOUT(state) {
+    state.userInfo = {
+      userId: '',
+      token: ''
+    }
+    state.store = {}
+    state.isLogin = false
   },
-  /**
-   * 设置登录成功状态
-   * @param state
-   * @param isLogin
-   * @constructor
-   */
-  SET_LOGGED_IN (state, isLogin) {
-    state.userInfo.isLogin = isLogin;
-    Local.setItem('vuex', state);
+  //设置storeid
+  SET_STORE(state, data) {
+    state.store = _.merge({}, state.store, data)
   },
-  /**
-   * 设置登录失效状态
-   * @param state
-   * @constructor
-   */
-  SET_INVALID_LOGIN (state) {
-    state.app.menuItem = '0-0';
-    state.userInfo.isLogin = false;
-    Local.setItem('vuex', state);
+  //设置商城个数
+  SET_STORELEN(state, data) {
+    state.storeLen = data
   },
-
-  SET_APPCLASS (state, className) {
-    state.app.boxClass = className;
-    Local.setItem('vuex', state);
+  //设置
+  SET_NOCACHE(state, data) {
+    state.nocache = _.merge({}, state.nocache, data)
   },
-
-  SET_NAVMOD (state, value){
-    state.app.menuItem = value;
-    Local.setItem('vuex', state);
-  },
-
-  SET_USERNAV (state, value){
-    state.userMenu.userNav  = value;
-    Local.setItem('vuex', state);
-  },
-  SET_MENUITEMS (state, value){
-    state.menuItems = value;
-    Local.setItem('vuex', state);
-  },
-
-  SET_UEDITOR (state, value){
-    state.UEditor.container = value;
-    Local.setItem('UEditor', state);
-  }
 }
+

@@ -1,0 +1,9 @@
+@import './iconfont/iconfont.css';
+@import "common/hf-public.scss";
+@import "./login/index";
+canvas{
+  display: block;
+}
+#main{
+  min-width: 500px;
+}

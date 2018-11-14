@@ -3,29 +3,26 @@
  */
 
 export default {
+  //用户信息getters
   getUserInfo: state => {
     return state.userInfo;
   },
-  isLogin: state => {
-    return state.userInfo.isLogin;
+  //设置登陆状态getters
+  getLoginStatus: state => {
+    return state.isLogin;
   },
-  getAlert: state => {
-    return state.alert;
+  //商铺 ID getters
+  getStores: state => {
+    return state.store || {};
   },
-  getApp: state => {
-    return state.app;
+  //商铺个数  用于header隐藏按钮 getters
+  getStoreLen: state => {
+    return state.storeLen;
   },
-  getNavMod: state => {
-    return state.app.menuItem;
-  },
-  getUserNav: state => {
-    return state.userMenu.userNav;
-  },
-  getMenuItems:state=>{
-    return state.menuItems
-  },
-  getUEditor: state => {
-    return state.UEditor.container;
-  },
+  //全局非缓存变量 getters
+  getNocache: state => {
+    return state.nocache;
+  }
+};
 
-}
+

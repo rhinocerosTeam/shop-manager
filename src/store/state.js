@@ -2,34 +2,23 @@
  * Created by Administrator on 2017/1/12.
  */
 export default {
+  //用户的登陆信息和token
   userInfo: {
-    username: "",
-    id: "",
-    firstLogin: false,
-    isLogin: false,
+    userId: '',
+    token: '',
+    headImg: '',
+    mobile: '',
+    nickName: ''
   },
-  alert: {
-    show: false,
-    type: 'alert',
-    title: '',
-    message: '',
-    okBtnText: '确 定',
-    canlBtnText: '关 闭',
-    okStyle: '',
-    cancelStyle: '',
-    onOk: null,
-    onCancel: null
+  //商铺ID
+  store: {
+    storeId: '',
+    coverImgUrl: '',
+    name: '',
   },
-  app: {
-    boxClass: 'box',
-    menuItem: '',
-  },
-  userMenu: {
-    userNav: '',
-  },
-  menuItems: [],
-  UEditor: {
-    container: ''
-  }
-
+  storeLen: 0,
+  //是否登陆
+  isLogin: false,
+  nocache: {}
 }
+

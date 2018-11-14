@@ -1,13 +1,16 @@
 ## 项目名称
-huayi_sever
+hefantv_businessMall_server
 ## 项目描述
-华谊艺术馆 后台管理页面
+盒饭商城 管理后台
+
 ## 项目地址
 
 * 测试环境：
 
-    测试：devserver.huayi-art.com
+
+    测试：http://testdian.hefantv.com/#/login
 
    
 
-* 线上环境：server.huayi-art.com
+* 线上环境： http://dian.hefantv.com/#/login
+

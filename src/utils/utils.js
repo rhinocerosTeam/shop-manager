@@ -326,9 +326,10 @@ class Utils {
     }
 
     static isLocalStorageSupported() {
-        var testKey = 'test',
-            storage = window.localStorage;
+
         try {
+            var testKey = 'test',
+            storage = window.localStorage;
             storage.setItem(testKey, 'testValue');
             storage.removeItem(testKey);
             return true;
@@ -348,6 +349,21 @@ class Utils {
             return false;
         }
     }
+
+  /**
+   * 验证不是空对象
+   * @return {boolean} 不是空对象返回 true 是空对象返回false
+   * @author 宋佩兰 2018-7-7 11：00
+   * */
+  static isNotEmptyObject(obj) {
+    if (!obj || !typeof obj == 'object') {
+      return false
+    }
+    if (JSON.stringify(obj) == "{}") {
+      return false
+    }
+    return true
+  }
 }
 
 export default Utils;
