@@ -450,7 +450,7 @@
                 let data = {code:1000,data:{token:1234,consume:1234}}
                 this.loading()
                 if (this.userPassowrdLogin) {
-                  //  data = await this.loginByPassword()
+                   data = await this.loginByPassword()
                 } else {
                    // data = await this.loginByCrod()
                 }
