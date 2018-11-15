@@ -62,16 +62,18 @@ export default _.merge({}, homeApi, loginApi, waresApi, orderApi, {
     }
     return result;
   },
+
   /**
    * 格式化参数
    * @param data
    * @returns {{}}
    */
   paramFormat(data) {
-    let token = this.getToken()
+    let user = store.state.userInfo
     let storeid = this.getStoreId()
     let result = {};
-
+    result.consume= user.consume
+    result.token = user.token
     result.data = JSON.stringify(data);
     return result;
   },
@@ -79,7 +81,7 @@ export default _.merge({}, homeApi, loginApi, waresApi, orderApi, {
    * @description 设置headers
    * @author DaWei
    * @date 2018-07-23
-   * @returns 
+   * @returns
    */
   setHeaders() {
     return {
@@ -91,7 +93,7 @@ export default _.merge({}, homeApi, loginApi, waresApi, orderApi, {
    * @description 获取当前storeId
    * @author DaWei
    * @date 2018-07-23
-   * @returns 
+   * @returns
    */
   getStoreId() {
     let storeInfo = store.state.store;
@@ -103,7 +105,7 @@ export default _.merge({}, homeApi, loginApi, waresApi, orderApi, {
    * @description 获取当前token
    * @author DaWei
    * @date 2018-07-23
-   * @returns 
+   * @returns
    */
   getToken() {
     let userInfo = store.state.userInfo;

@@ -94,10 +94,10 @@
                 ajaxing: null,
                 noticing: false,
                 loginInfo: {
-                    mobile: process.env.NODE_ENV === 'development' ? '18510455934':'',
+                    mobile: process.env.NODE_ENV === 'development' ? '15931693851':'',
                     // mobile: '18510455934',
                     crod: '',
-                    password: ''
+                    password: '123456'
                 },
                 correct: false,
 
@@ -111,7 +111,7 @@
                 token: "",
                 isLogin: false,
                 errorInfo: '',
-                userPassowrdLogin: false,
+                userPassowrdLogin: true,
 
                 //设置密码
                 setPassword: {
@@ -447,46 +447,44 @@
                     return
                 }
 
-                let data = {code:1000,data:{token:1234,consume:1234}}
+                let data = {}
                 this.loading()
                 if (this.userPassowrdLogin) {
-                  //  data = await this.loginByPassword()
+                    data = await this.loginByPassword()
                 } else {
                    // data = await this.loginByCrod()
                 }
                 if (data) {
                     if (data.code == 1000) {
-
-
                         this.token = data.data.token;
                         this.isLogin = true
                         /* 状态未申请 -1    通过1    不通过2 盛情中0 */
                         this.setUserInfo({
-                            token: data.data.token
+                          ...data.data
                         })
 
-//                        if (!this.userPassowrdLogin) {
-//                            if (!data.data.setPwdFlag) {
-//                                this.setPassword = {
-//                                    passwordFrist: "",
-//                                    passwordSecond: ""
-//                                }
-//                                this.type = 2
-//                                this.$message.success('您还未设置密码，请设置！');
-//                            } else {
-//                                this.noticing = true
-//                                this.$message.success('登录成功');
-//                                setTimeout(() => {
-//                                    this.noticing = false;
-//                                    this.$router.push('/mailList')
-//                                }, 1000);
-//                            }
-//                        } else {
+                       /* if (!this.userPassowrdLogin) {
+                            if (!data.data.setPwdFlag) {
+                                this.setPassword = {
+                                    passwordFrist: "",
+                                    passwordSecond: ""
+                                }
+                                this.type = 2
+                                this.$message.success('您还未设置密码，请设置！');
+                            } else {
+                                this.noticing = true
+                                this.$message.success('登录成功');
+                                setTimeout(() => {
+                                    this.noticing = false;
+                                    this.$router.push('/mailList')
+                                }, 1000);
+                            }
+                        } else {*/
                             this.noticing = true
                             this.$message.success('登录成功');
                             setTimeout(() => {
                                 this.noticing = false;
-                                this.$router.push('/mailList')
+                                this.$router.push('/home')
                             }, 1000);
 //                        }
                     } else if (data.code == 4050) {
@@ -525,8 +523,8 @@
              */
             async loginByPassword() {
                 let params = {
-                    mobile: this.loginInfo.mobile,
-                    pwd: this.loginInfo.password
+                    phone: this.loginInfo.mobile,
+                    password: this.loginInfo.password
                 }
                 let data = await api.loginByPassword(params).catch((err) => {
                     this.errorInfo = '请检查网络'

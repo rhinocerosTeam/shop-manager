@@ -161,29 +161,29 @@ router.beforeEach(async (to, from, next) => {
 
 
   if (userInfo && userInfo.token) {
-    if (!hasUserInfo) {
-      loadUI()
-      let data = await api.getUserByParam(userInfo.token).catch(err => {
-        eleVue.$message.error("获取用户信息失败,请重新登录");
-      });
-      if (data && data.code == 1000 && data.data && data.data.user) {
-        hasUserInfo = true;
-        store.dispatch("loginIn", data.data.user);
-        eleVue.ajaxing.close()
-        next();
-      } else {
-        eleVue.$message.error("获取用户信息失败,请重新登录");
-        store.dispatch("loginOut");
-        eleVue.ajaxing.close()
-        next({
-          path: "/login"
-        });
-      }
-    } else {
+    // if (!hasUserInfo) {
+    //   loadUI()
+    //   let data = await api.getUserByParam(userInfo.token).catch(err => {
+    //     eleVue.$message.error("获取用户信息失败,请重新登录");
+    //   });
+    //   if (data && data.code == 1000 && data.data && data.data.user) {
+    //     hasUserInfo = true;
+    //     store.dispatch("loginIn", data.data.user);
+    //     eleVue.ajaxing.close()
+    //     next();
+    //   } else {
+    //     eleVue.$message.error("获取用户信息失败,请重新登录");
+    //     store.dispatch("loginOut");
+    //     eleVue.ajaxing.close()
+    //     next({
+    //       path: "/login"
+    //     });
+    //   }
+    // } else {
       next();
-    }
+   // }
 
-    return;
+    //return;
   } else {
     next({
       path: "/login"

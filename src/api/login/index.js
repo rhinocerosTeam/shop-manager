@@ -19,9 +19,8 @@ export default {
   /** 密码登录 **/
   loginByPassword(param) {
     return Promise.resolve($.ajax({
-      url: API_HOST + '/login/pwdLogin',
+      url: API_HOST + '/web/pwdLogin',
       dataType: 'json',
-      type: 'POST',
       data: this.paramFormat({
         ...param
       })
