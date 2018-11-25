@@ -15,7 +15,7 @@
 
   import {upload, dialog} from "element-ui"
   import {IMG_HOST} from 'api/config'
-  import UploadOSSUtil from 'utils/uploadOSS'
+  import UploadOSSUtil from 'utils/uploadCOS'
   export default {
     data(){
       return {

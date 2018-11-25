@@ -5,6 +5,17 @@ import {
 export default {
 
 
+  stsAuth(param){
+    return Promise.resolve($.ajax({
+      url: API_HOST + '/api/sts-auth',
+      type: 'get',
+      dataType: 'json',
+      data: {...param}
+    }))
+
+  },
+
+
   /** 验证码登录 **/
   loginByCrod(param) {
     return Promise.resolve($.ajax({
