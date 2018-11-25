@@ -64,7 +64,7 @@ export default {
   addProduct_apply(data){
     return Promise.resolve(
       $.ajax({
-        url: API_HOST + "/apply/addProduct",
+        url: API_HOST + "/web/addProduct",
         dataType: 'json',
         headers: this.setHeaders(),
         // method: "POST",

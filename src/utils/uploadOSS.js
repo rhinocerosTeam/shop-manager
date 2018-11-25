@@ -55,6 +55,13 @@ class UploadOss {
     }
   }
 
+
+  getAuthorization(){
+
+  }
+
+
+
   async upload($file) {
     return new Promise(async(reslove, reject) => {
       var fileName = $file['name'];
