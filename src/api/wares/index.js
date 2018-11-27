@@ -53,7 +53,7 @@ export default {
   getProductById(data){
     return Promise.resolve(
       $.ajax({
-        url: API_HOST + "/apply/getProductApplyDetail",
+        url: API_HOST + "/web/getProductApplyDetail",
         headers: this.setHeaders(),
         dataType: 'json',
         data: this.paramFormat({...data})
@@ -89,7 +89,7 @@ export default {
   editProduct(data){
     return Promise.resolve(
       $.ajax({
-        url: API_HOST + "/product/editProduct",
+        url: API_HOST + "/web/editProduct",
         dataType: 'json',
         method: "POST",
         headers: this.setHeaders(),
@@ -101,7 +101,7 @@ export default {
   getProductDetail(data){
     return Promise.resolve(
       $.ajax({
-        url: API_HOST + "/product/getProductDetail",
+        url: API_HOST + "/web/getProductDetail",
         dataType: 'json',
         headers: this.setHeaders(),
         data: this.paramFormat({...data})
@@ -124,7 +124,7 @@ export default {
   getProductList(data){
     return Promise.resolve(
       $.ajax({
-        url: API_HOST + "/product/getProductList",
+        url: API_HOST + "/web/getProductList",
         dataType: 'json',
         headers: this.setHeaders(),
         data: this.paramFormat({...data})
@@ -135,7 +135,7 @@ export default {
   shelfProduct(data){
     return Promise.resolve(
       $.ajax({
-        url: API_HOST + "/product/shelfProduct",
+        url: API_HOST + "/web/shelfProduct",
         dataType: 'json',
         headers: this.setHeaders(),
         data: this.paramFormat({...data})
@@ -146,7 +146,7 @@ export default {
   sortProduct(data){
     return Promise.resolve(
       $.ajax({
-        url: API_HOST + "/product/sortProduct",
+        url: API_HOST + "/web/sortProduct",
         dataType: 'json',
         headers: this.setHeaders(),
         data: this.paramFormat({...data})

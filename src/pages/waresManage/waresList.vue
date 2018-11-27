@@ -165,8 +165,7 @@ export default {
     },
     methods: {
         async initData() {
-            let res = await api
-                    .getProductList({
+            let res = await api.getProductList({
                         pageNo: this.currentPage,
                         pageSize: this.pageSize,
                         name: this.productName,
