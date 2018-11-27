@@ -9,17 +9,17 @@
             <el-form-item label="商品标题" prop="name">
                 <el-input v-model="product.name" :disabled="disabled"></el-input>
             </el-form-item>
-            <el-form-item label="商品展示" prop="pics">
+            <el-form-item label="商品展示" prop="swiper">
 
                 <template v-if="disabled">
-                    <picture-card v-for="file,index in product.pics" class="upload-list" :key="index" width="150px" :src="file.imgUrl" border="1px dashed #c0ccda">
+                    <picture-card v-for="file,index in product.swiper" class="upload-list" :key="index" width="150px" :src="file.imgUrl" border="1px dashed #c0ccda">
                         <el-tag class='mainTag' v-if='index==0' size='mini' slot='mainTag'>主图</el-tag>
                     </picture-card>
                 </template>
                 <template v-else>
-                    <draggable :list="product.pics" :move="getdata" @update="datadragEnd" :options="{animation: 300,handle:disabled?'':'.upload-list'}">
+                    <draggable :list="product.swiper" :move="getdata" @update="datadragEnd" :options="{animation: 300,handle:disabled?'':'.upload-list'}">
                         <transition-group name="list-complete">
-                            <div v-for="file,index in product.pics" class="upload-list" :key="index">
+                            <div v-for="file,index in product.swiper" class="upload-list" :key="index">
                                 <el-tag class='mainTag' v-if='index==0' size='mini'>主图</el-tag>
                                 <picture-card width="150px" :src="file.imgUrl" border="1px dashed #c0ccda"></picture-card>
                                 <div class="delete" v-if="!disabled">
@@ -29,23 +29,23 @@
                         </transition-group>
                     </draggable>
 
-                    <upload-oss v-if="product.pics.length <5" @success="handleSuccess"></upload-oss>
+                    <upload-oss v-if="product.swiper.length <5" @success="handleSuccess"></upload-oss>
                 </template>
                 <p class="tips">注：建议尺寸750X750，大小不超过2M，请上传1至5张展示图片。 图片可拖动排序。 </p>
             </el-form-item>
-            <el-form-item label="商品白底图" prop="coverImgUrl">
+            <el-form-item label="商品白底图" prop="coverImg">
                 <div class="productPictureCont">
                     <uploadOss @success="coverImgUrl_handleSuccess" v-if="!disabled"></uploadOss>
-                    <picture-card class="showPictrue" :src="product.coverImgUrl" v-if="product.coverImgUrl"></picture-card>
+                    <picture-card class="showPictrue" :src="product.coverImg" v-if="product.coverImg"></picture-card>
                 </div>
                 <p class="tips">注：建议尺寸750X750，大小不超过2M。 </p>
             </el-form-item>
-            <el-form-item label="单人单日限购数量">
-                <el-input-number v-model="product.peopleLimitNum" @change="numberChangehandle" :min="0" :max="999999999" :disabled="disabled" prop="peopleLimitNum" :precision="0" label="描述文字"></el-input-number>
-            </el-form-item>
-            <el-form-item label="单人限购数量">
-                <el-input-number v-model="product.dayLimitNum" @change="numberChangehandle" :min="0" :max="999999999" :disabled="disabled" prop="dayLimitNum" :precision="0" label="描述文字"></el-input-number>
-            </el-form-item>
+            <!--<el-form-item label="单人单日限购数量">-->
+                <!--<el-input-number v-model="product.peopleLimitNum" @change="numberChangehandle" :min="0" :max="999999999" :disabled="disabled" prop="peopleLimitNum" :precision="0" label="描述文字"></el-input-number>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="单人限购数量">-->
+                <!--<el-input-number v-model="product.dayLimitNum" @change="numberChangehandle" :min="0" :max="999999999" :disabled="disabled" prop="dayLimitNum" :precision="0" label="描述文字"></el-input-number>-->
+            <!--</el-form-item>-->
         </el-form>
 
     </div>

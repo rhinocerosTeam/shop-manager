@@ -69,14 +69,14 @@
         product: {
 //          productId: '',
           name: '', //商品名称
-          coverImgUrl: "",//'http://h5activestatic.hefantv.com/testFileResource/1532509428891_3061_QQ截图20180723183710.png', //封面图
+          coverImg: "",//'http://h5activestatic.hefantv.com/testFileResource/1532509428891_3061_QQ截图20180723183710.png', //封面图
           dayLimitNum: 5, //单日限购数量
           peopleLimitNum: 5, //单人限购数量
-          detail: ``, //商品详情
+          productDesc: ``, //商品详情
           productType: '4', //0应援，1星币，2商城，3官方，4第三方
           status: '0', //0：下架（前台可见）；1：上架
           // pics: [],
-          pics: [
+          swiper: [
             /*{
              imgHeight: 805,
              imgSort: 0,
@@ -86,15 +86,15 @@
           ], //单日限购数量
           skuList: [
             {
-              barcode: "",
-              marketPrice: 0,
+              barcode: '',
+              oldPrice: 0,
               price: 0,
               productId: 0,
-              skuId: 0,
-              skuImg: "",//http://img1.hefantv.com/20180726/1064c496558d49eabd79b9b0003217a31532591215785_8458_QQ截图20180710111129.png",
-              skuName: "",
-              sort: 1,
-              stock: 0,
+              coverImg: "http://img1.hefantv.com/20180726/d3b7939c2448428697741708660929ee1532607756126_3069_QQ截图20180710111129.png",
+              name: "",
+              stockNum: 0,
+              stockOut:0,
+              sort: 0,
             },
 
           ], //单日限购数量

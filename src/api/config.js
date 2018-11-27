@@ -13,7 +13,7 @@
 
 export const API_HOST = (process.env.NODE_ENV === 'production') ?
 
-  'https://apidian.hefantv.com/pubapi/diangw' : 'http://127.0.0.1:7002'
+  'https://apidian.hefantv.com/pubapi/diangw' : 'http://127.0.0.1:7001'
 
 
 export const MALL_HTML_LINK = (process.env.NODE_ENV === 'production') ?

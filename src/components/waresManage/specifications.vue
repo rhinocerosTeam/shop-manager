@@ -10,14 +10,14 @@
 
       <el-row class="specificationsBox" v-for="sku,index in product.skuList " :key="'skuList_'+index">
         <el-col :span="4">
-          <el-form-item label="商品图片" label-width="79px" :prop="'skuList.' + index + '.skuImg'"
-                        :rules="rules.skuImg">
+          <el-form-item label="商品图片" label-width="79px" :prop="'skuList.' + index + '.coverImg'"
+                        :rules="rules.coverImg">
 
             <div class="productPictureCont">
               <uploadOss :index="index" @success="handleSuccess"
                          v-if="!disabled"></uploadOss>
               <picture-card class="showPictrue"
-                            :src="sku.skuImg+'@148w'" v-if="sku.skuImg"></picture-card>
+                            :src="sku.coverImg+'@148w'" v-if="sku.coverImg"></picture-card>
             </div>
 
           </el-form-item>
@@ -25,24 +25,25 @@
         <el-col :span="9">
           <el-row>
             <el-form-item label="规格名称"
-                          :prop="'skuList.' + index + '.skuName'"
-                          :rules="rules.skuName"
+                          :prop="'skuList.' + index + '.name'"
+                          :rules="rules.name"
             >
-              <el-input v-model="sku.skuName" :disabled="disabled"></el-input>
+              <el-input v-model="sku.name" :disabled="disabled"></el-input>
             </el-form-item>
           </el-row>
 
           <el-row v-if="pageType=='publishWares'||pageType=='waresDetail'">
             <el-form-item label="库存"
-                          :prop="'skuList.' + index + '.stock'"
-                          :rules="rules.stock">
-              <el-input v-model.number="sku.stock" :disabled="disabled"></el-input>
+                          :prop="'skuList.' + index + '.stockNum'"
+                          :rules="rules.stockNum">
+              <el-input v-model.number="sku.stockNum" :disabled="disabled"></el-input>
             </el-form-item>
 
           </el-row>
           <el-row v-else>
             <el-form-item label="库存"
             >
+              出库数量:{{sku.stockOut}}
               {{sku.oldStock>-1?sku.oldStock:0}}
               <span class="item">
                 <el-tooltip class="item" effect="dark"
@@ -51,7 +52,7 @@
                   <i class="el-icon-question"></i>
                 </el-tooltip>增减库存
               </span>
-              <el-input-number v-model.number="sku.stock" :precision="0" :min="-sku.oldStock" :max="999999999"
+              <el-input-number v-model.number="sku.stockNum" :precision="0" :min="-sku.oldStock" :max="999999999"
                                :disabled="num_disabled()"
                                label=""></el-input-number>
 
@@ -76,9 +77,10 @@
                              label=""></el-input-number>
             <!--<el-input ></el-input>-->
           </el-form-item>
-          <el-form-item label="市场价" :prop="'skuList.' + index + '.marketPrice'" :rules="rules.marketPrice">
-            <el-input v-model.number="sku.marketPrice" :disabled="num_disabled()"></el-input>
+          <el-form-item label="市场价" :prop="'skuList.' + index + '.oldPrice'" :rules="rules.oldPrice">
+            <el-input v-model.number="sku.oldPrice" :disabled="num_disabled()"></el-input>
           </el-form-item>
+
         </el-col>
         <el-col :span="2" justify="center" align="middle">
           <span class="deleteBtn" @click="delete_handler(index)"
@@ -152,13 +154,13 @@
       return {
         disabled: this.pattern == waresPattern.show || this.pattern == waresPattern.upWares,
         rules: {
-          skuImg: [
+          coverImg: [
             {required: true, message: '请输入商品图'},
           ],
-          skuName: [
+          name: [
             {required: true, message: '请输入规格名称'},
           ],
-          stock: [
+          stockNum: [
             {required: true, message: '请输入库存'},
             {type: 'number', message: '库存必须为数字'},
             {validator: validateNumber, trigger: 'blur'},
@@ -174,7 +176,7 @@
             {validator: validatePrice, trigger: 'blur'},
             {validator: validatePriceNumLimit, trigger: 'blur'},
           ],
-          marketPrice: [
+          oldPrice: [
             // {type: 'number', message: '市场价必须为数字', trigger: 'blur'},
             {validator: validateMarketPrice, trigger: 'blur'},
 
@@ -193,14 +195,14 @@
       addSpecifications(){
         this.skuList.push({
           barcode: '',
-          marketPrice: 0,
+          oldPrice: 0,
           price: 0,
           productId: 0,
-//          skuId: 0,
-          skuImg: "",
-          skuName: "",
-          stock: 0,
-          weight: 0,
+          coverImg: "",
+          name: "",
+          stockNum: 0,
+          stockOut:0,
+          sort: 0,
           isNew: true
         })
       },
@@ -213,9 +215,9 @@
 
       handleSuccess(imgObj, index){
         console.log('规格：handleSuccess', imgObj, index)
-        this.product.skuList[index].skuImg = imgObj.imgUrl
+        this.product.skuList[index].coverImg = imgObj.imgUrl
         console.log('规格：handleSuccess', imgObj, index, this.product.skuList[index])
-        this.$refs['specificationsform'].clearValidate(['skuList.' + index + '.skuImg'])
+        this.$refs['specificationsform'].clearValidate(['skuList.' + index + '.coverImg'])
       },
 
       delete_handler(index){
