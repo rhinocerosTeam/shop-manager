@@ -32,7 +32,7 @@
     <div class="box">
       <p><span style="color:red;margin-right: 5px;">*</span>商品描述</p>
       <div class="content">
-        <quill-editor v-model="product.detail" :product="product" :pattern="pattern"
+        <quill-editor v-model="product.productDesc" :product="product" :pattern="pattern"
         ></quill-editor>
       </div>
     </div>
@@ -142,7 +142,7 @@
       validate(){
         let bFlag = this.$refs['baseInfo'].validate()
         let sFlag = this.$refs['specifications'].validate()
-        let quillEditor = this.product.detail
+        let quillEditor = this.product.productDesc
         if(!quillEditor){
           this.$message({
             message: "请输入商品描述",

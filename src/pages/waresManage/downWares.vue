@@ -8,7 +8,8 @@
     <subtitle>编辑商品</subtitle>
     <wares ref="wares" pageType="downWares" :productDetail="product">
       <el-button slot="btn" @click="save(1)" :disabled="btn_disable" type="primary">保存并申请上架</el-button>
-      <el-button slot="btn" @click="save(0)" :disabled="btn_disable" type="primary">保存至下架商品</el-button>
+      <el-button slot="btn" @click="save(-1)" :disabled="btn_disable" type="primary">保存至下架商品</el-button>
+      <el-button slot="btn" @click="deleteProduct()" type="primary" :disabled="btn_disable">删除商品</el-button>
     </wares>
   </div>
 </template>
@@ -48,8 +49,8 @@
           return
         });
         data = api.parse(data)
-        if (data && data.productDetail) {
-          let proDetail = data.productDetail
+        if (data && data) {
+          let proDetail = data
 
           // 整理库存和增加库存
           proDetail.skuList.map(function (pro, index) {
@@ -74,7 +75,7 @@
         if (this.$refs.wares.validate()) {
 
           this.$refs.wares.priceValidate(async() => {
-            this.product.opType = type
+            this.product.status = type
             this.btn_disable = true
 
             let data = await api.editProduct(this.product).catch((e) => {
@@ -120,6 +121,38 @@
 
         }
       },
+
+      async deleteProduct(){
+
+        this.$confirm("确定要删除该商品", {
+          showClose: false
+        }).then(async() => {
+          let data = await api.deleteProduct({productId:this.product.id}).catch((e) => {
+            console.log('[error]getProductDetail ', e)
+          });
+          api.parse(data)
+          if (data.code == 1000) {
+            this.$message({
+              message: "删除成功",
+              type: 'success'
+            })
+            setTimeout(() => {
+              this.btn_disable = false
+              this.$router.push('/waresManage/waresList')
+            }, 1000);
+          } else {
+            // 失败
+            this.$message({
+              message: data.msg,
+              type: 'error'
+            })
+            this.btn_disable = false
+          }
+        }).catch(err => {
+        });
+
+
+      }
     }
   };
 </script>

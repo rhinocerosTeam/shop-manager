@@ -8,6 +8,7 @@
     <subtitle>编辑商品</subtitle>
     <wares ref="wares" pageType="upWares" :productDetail="product">
       <el-button slot="btn" @click="save(0)" type="primary" :disabled="btn_disable">保存并提交</el-button>
+      <el-button slot="btn" @click="deleteProduct()" type="primary" :disabled="btn_disable">删除商品</el-button>
     </wares>
   </div>
 </template>
@@ -22,7 +23,7 @@
       return {
         wid: parseInt(Utils.getQueryStringVue('id')), // 商品id
         product: {},
-        btn_disable:false
+        btn_disable: false
       };
     },
     components: {
@@ -49,11 +50,13 @@
           return
         }
         data = api.parse(data)
-        if (data && data.productDetail) {
-          let proDetail = data.productDetail
+        if (data) {
+          let proDetail = data
+
+          console.log('------------------------->', proDetail)
 
           // 整理库存和增加库存
-          proDetail.skuList.map((obj, index) => {
+          proDetail.skuList && proDetail.skuList.map((obj, index) => {
             obj['oldStock'] = obj['stock']
             obj['oldPrice'] = obj['price'];
             obj['stock'] = 0
@@ -104,6 +107,38 @@
 
         }
       },
+
+      async deleteProduct(){
+
+        this.$confirm("确定要删除该商品", {
+          showClose: false
+        }).then(async() => {
+            let data = await api.deleteProduct({productId:this.product.id}).catch((e) => {
+              console.log('[error]getProductDetail ', e)
+            });
+            api.parse(data)
+            if (data.code == 1000) {
+              this.$message({
+                message: "删除成功",
+                type: 'success'
+              })
+              setTimeout(() => {
+                this.btn_disable = false
+                this.$router.push('/waresManage/waresList')
+              }, 1000);
+            } else {
+              // 失败
+              this.$message({
+                message: data.msg,
+                type: 'error'
+              })
+              this.btn_disable = false
+            }
+        }).catch(err => {
+        });
+
+
+      }
     }
   };
 </script>

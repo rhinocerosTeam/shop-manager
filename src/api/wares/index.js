@@ -91,7 +91,6 @@ export default {
       $.ajax({
         url: API_HOST + "/web/editProduct",
         dataType: 'json',
-        method: "POST",
         headers: this.setHeaders(),
         data: this.paramFormat({...data})
       })
@@ -131,7 +130,7 @@ export default {
       })
     );
   },
-  /** 商品管理-->商品列表-->下架*/
+  /** 商品管理-->商品列表-->上架/下架*/
   shelfProduct(data){
     return Promise.resolve(
       $.ajax({
@@ -147,6 +146,17 @@ export default {
     return Promise.resolve(
       $.ajax({
         url: API_HOST + "/web/sortProduct",
+        dataType: 'json',
+        headers: this.setHeaders(),
+        data: this.paramFormat({...data})
+      })
+    );
+  },
+  /** 商品管理-->商品列表-->排序*/
+  deleteProduct(data){
+    return Promise.resolve(
+      $.ajax({
+        url: API_HOST + "/web/deleteProduct",
         dataType: 'json',
         headers: this.setHeaders(),
         data: this.paramFormat({...data})

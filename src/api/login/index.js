@@ -6,12 +6,12 @@ export default {
 
 
   stsAuth(param){
-    return Promise.resolve($.ajax({
+    return $.ajax({
       url: API_HOST + '/api/sts-auth',
       type: 'get',
       dataType: 'json',
       data: {...param}
-    }))
+    })
 
   },
 

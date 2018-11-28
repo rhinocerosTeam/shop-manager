@@ -6,8 +6,8 @@ import api from 'api'
 
 
 // 请求用到的参数
-var Bucket = 'product-1256826840';
-var Region = 'ap-beijing';
+var Bucket = 'shop-1256826840';
+var Region = 'ap-beijing-1';
 var protocol = location.protocol === 'https:' ? 'https:' : 'http:';
 var prefix = protocol + '//' + Bucket + '.cos.' + Region + '.myqcloud.com/';
 
@@ -30,7 +30,7 @@ class UploadOss {
 
 
     api.stsAuth({pathname:encodeURIComponent(pathname)}).done((data)=>{
-      let AuthData = JSON.parse(data)
+      let AuthData = data
       callback(null, {
         Authorization: AuthData.Authorization,
         XCosSecurityToken: AuthData.XCosSecurityToken,
@@ -43,7 +43,7 @@ class UploadOss {
 
 
   uploadFile(file, callback){
-    var Key = 'dir/' + file.name; // 这里指定上传目录和文件名
+    var Key = 'test/' + file.name; // 这里指定上传目录和文件名
     this.getAuthorization({Method: 'PUT', Key: Key}, function (err, info) {
 
       if (err) {
@@ -78,7 +78,7 @@ class UploadOss {
 
   async upload($file) {
     return new Promise(async(reslove, reject) => {
-      var fileName = $file['name'];
+      var fileName = ' http://'+Bucket+'.pictj.myqcloud.com/test/'+$file['name'];
 
 
       this.uploadFile($file,function(err, data){
@@ -86,7 +86,7 @@ class UploadOss {
         if(err){
           reject(err)
         }else{
-          reslove(data)
+          reslove(fileName)
         }
       })
 

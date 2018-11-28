@@ -17,7 +17,7 @@
               <uploadOss :index="index" @success="handleSuccess"
                          v-if="!disabled"></uploadOss>
               <picture-card class="showPictrue"
-                            :src="sku.coverImg+'@148w'" v-if="sku.coverImg"></picture-card>
+                            :src="sku.coverImg" v-if="sku.coverImg"></picture-card>
             </div>
 
           </el-form-item>
@@ -83,8 +83,11 @@
 
         </el-col>
         <el-col :span="2" justify="center" align="middle">
+          <!--<span class="deleteBtn" @click="delete_handler(index)"-->
+                <!--v-if="sku.isNew || pageType=='publishWares'&&product.skuList.length>1">删除</span>-->
+
           <span class="deleteBtn" @click="delete_handler(index)"
-                v-if="sku.isNew || pageType=='publishWares'&&product.skuList.length>1">删除</span>
+                v-if="product.skuList.length>1">删除</span>
         </el-col>
       </el-row>
     </el-form>
@@ -198,7 +201,7 @@
           oldPrice: 0,
           price: 0,
           productId: 0,
-          coverImg: "",
+          coverImg: "http://shop-1256826840.pictj.myqcloud.com/test/9d0ccc1722ba9c9c062e2bce7bd0b4fddccf75e3786ff-WUVwdC_fw658.jpg",
           name: "",
           stockNum: 0,
           stockOut:0,
