@@ -75,7 +75,6 @@
           productDesc: ``, //商品详情
           productType: '4', //0应援，1星币，2商城，3官方，4第三方
           status: '0', //0：下架（前台可见）；1：上架
-          // pics: [],
           swiper: [
             /*{
              imgHeight: 805,

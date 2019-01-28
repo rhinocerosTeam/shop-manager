@@ -66,7 +66,7 @@
 
       <el-table-column align="center" label="商品" width="250" show-overflow-tooltip>
         <template slot-scope="scope">
-          <picture-card width='80px' class="shop-img" :src="scope.row.coverImgUrl"
+          <picture-card width='80px' class="shop-img" :src="scope.row.coverImg"
                         border="1px dashed #c0ccda"></picture-card>
           <span class='name'>{{ scope.row.name }}</span>
         </template>
