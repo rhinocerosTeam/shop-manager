@@ -14,8 +14,8 @@
       </router-link>
 
       <!-- 模板管理 -->
-      <router-link :to='{name : "home"}'>
-        <el-menu-item index="home">模板管理</el-menu-item>
+      <router-link :to='{name : "template"}'>
+        <el-menu-item index="template">模板管理</el-menu-item>
       </router-link>
 
       <!-- 商品管理 -->
