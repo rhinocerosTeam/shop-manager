@@ -6,7 +6,7 @@ import VueRouter from "vue-router";
 import userManage from "./userManage";
 import orderManage from "./orderManage";
 import waresManage from "./waresManage";
-
+import channelManage from "./channelManage";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -84,7 +84,8 @@ const router = new VueRouter({
 
     ...userManage,
     ...orderManage,
-    ...waresManage
+    ...waresManage,
+    ...channelManage
   ],
   // 每次进入组件 滚动到顶部
   scrollBehavior (to, from, savedPosition) {

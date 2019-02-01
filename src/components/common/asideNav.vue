@@ -12,6 +12,20 @@
       <router-link :to='{name : "home"}'>
         <el-menu-item index="home">首页</el-menu-item>
       </router-link>
+      <!-- 频道管理 -->
+      <el-submenu index="channelManage">
+        <template slot="title">
+          <span>频道管理</span>
+        </template>
+        <el-menu-item-group>
+          <router-link :to='{name : "templateManage"}'>
+            <el-menu-item index="templateManage">模板管理</el-menu-item>
+          </router-link>
+          <router-link :to='{name : "channelManage"}'>
+            <el-menu-item index="channelManage">频道管理</el-menu-item>
+          </router-link>
+        </el-menu-item-group>
+      </el-submenu>
       <!-- 商品管理 -->
       <el-submenu index="waresManage">
         <template slot="title">

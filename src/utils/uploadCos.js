@@ -6,7 +6,7 @@ import api from 'api'
 
 
 // 请求用到的参数
-var Bucket = 'shop-1256826840';
+var Bucket =  'shop-1256826840';
 var Region = 'ap-beijing-1';
 var protocol = location.protocol === 'https:' ? 'https:' : 'http:';
 var prefix = protocol + '//' + Bucket + '.cos.' + Region + '.myqcloud.com/';
@@ -43,7 +43,8 @@ class UploadOss {
 
 
   uploadFile(file, callback){
-    var Key = 'test/' + file.name; // 这里指定上传目录和文件名
+    //var Key = 'test/' + file.name; // 这里指定上传目录和文件名
+    var Key = file.name; // 这里指定上传目录和文件名
     this.getAuthorization({Method: 'PUT', Key: Key}, function (err, info) {
 
       if (err) {
@@ -63,6 +64,7 @@ class UploadOss {
           var ETag = xhr.getResponseHeader('etag');
           callback(null, {url: url, ETag: ETag});
         } else {
+          console.log(xhr)
           callback('文件 ' + Key + ' 上传失败，状态码：' + xhr.status);
         }
       };
@@ -78,8 +80,8 @@ class UploadOss {
 
   async upload($file) {
     return new Promise(async(reslove, reject) => {
-      var fileName = ' http://'+Bucket+'.pictj.myqcloud.com/test/'+$file['name'];
-
+    //  var fileName = ' http://'+Bucket+'.pictj.myqcloud.com/test/'+$file['name'];
+      var fileName = ' http://'+Bucket+'.pictj.myqcloud.com/'+$file['name'];
 
       this.uploadFile($file,function(err, data){
         console.log(err || data);
