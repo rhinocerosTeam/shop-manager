@@ -10,7 +10,7 @@ export default {
   getAliOssUploadCfg() {
     return Promise.resolve(
       $.ajax({
-        url: API_OSS_HOST + '/v1/h5/getAliOssUploadCfg', dataType: 'json',
+        url: API_HOST + '/api/ossAuth', dataType: 'json',
         data: this.paramFormat()
       })
     );

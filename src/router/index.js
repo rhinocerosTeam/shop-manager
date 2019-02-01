@@ -21,6 +21,16 @@ const router = new VueRouter({
       },
       component: resolve => require(["../pages/home/"], resolve)
     },
+    //首页
+    {
+      path: "/template",
+      name: "template",
+      meta: {
+        auth: true,
+        keepAlive: false
+      },
+      component: resolve => require(["../pages/template/"], resolve)
+    },
     //通知页面
     {
       path: "/notice/noticeList",

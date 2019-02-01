@@ -97,7 +97,7 @@
             }
             setTimeout(() => {
               this.btn_disable = false
-              this.$router.push('/waresManage/applyList')
+              this.$router.push('/waresManage/waresList')
             }, 1000);
           } else {
             // 失败

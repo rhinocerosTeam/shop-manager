@@ -15,7 +15,6 @@ class UploadOss {
     this.ossOption = {}
     this.lasttime = 0
     this.enable = true
-    this.imgHost = 'http://img1.hefantv.com/'
   }
 
 
@@ -38,7 +37,7 @@ class UploadOss {
         data = data.data
         this.lasttime = Date.now()
         this.ossOption = data
-        this.setImgHost()
+        //this.setImgHost()
 
       }
       this.enable = true
@@ -48,17 +47,6 @@ class UploadOss {
 
   }
 
-
-  setImgHost() {
-    if (this.ossOption.host == 'http://adposter.oss-cn-beijing.aliyuncs.com') {
-      this.imgHost = 'http://img1.adposter.cn/'
-    }
-  }
-
-
-  getAuthorization(){
-
-  }
 
 
 
@@ -74,15 +62,15 @@ class UploadOss {
 
       var request = new FormData();
       var dateTimer = Date.now() + '_';
-      var ossImgUrl = this.imgHost + ossData.dir + dateTimer + fileNamePostfix;
-      request.append('OSSAccessKeyId', ossData.accessid);
+      var ossImgUrl = ossData.host+"/" + ossData.dirPath + dateTimer + fileNamePostfix;
+      request.append('OSSAccessKeyId', ossData.OSSAccessKeyId);
       request.append('policy', ossData.policy);
       request.append('Signature', ossData.signature);
       request.append('success_action_status', '200');
-      request.append('key', ossData.dir + dateTimer + fileNamePostfix);
+      request.append('key', ossData.dirPath + dateTimer + fileNamePostfix);
 
       $file && request.append('file', $file);
-      request.append('dir', ossData.dir);
+      request.append('dir', ossData.dirPath);
 
 
       api.uploadOss(request, ossData.host).done((data) => {

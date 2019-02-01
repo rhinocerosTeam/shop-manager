@@ -26,15 +26,23 @@
           </router-link>
         </el-menu-item-group>
       </el-submenu>
+
+
+      <!-- 模板管理 -->
+      <router-link :to='{name : "template"}'>
+        <el-menu-item index="template">模板管理</el-menu-item>
+      </router-link>
+
+
       <!-- 商品管理 -->
       <el-submenu index="waresManage">
         <template slot="title">
           <span>商品管理</span>
         </template>
         <el-menu-item-group>
-          <router-link :to='{name : "applyList"}'>
-            <el-menu-item index="applyList">申请列表</el-menu-item>
-          </router-link>
+          <!--<router-link :to='{name : "applyList"}'>-->
+            <!--<el-menu-item index="applyList">申请列表</el-menu-item>-->
+          <!--</router-link>-->
           <router-link :to='{name : "waresList"}'>
             <el-menu-item index="waresList">商品列表</el-menu-item>
           </router-link>

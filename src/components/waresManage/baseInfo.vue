@@ -117,16 +117,16 @@
                     imgObj.imgWidth = img.width
                     imgObj.imgHeight = img.height
 
-                    imgObj.imgSort = this.product.pics.length
+                    imgObj.imgSort = this.product.swiper.length
 
-                    this.product.pics.push({ ...imgObj })
-                    this.$refs['baseInfoform'].clearValidate(['pics'])
+                    this.product.swiper.push({ ...imgObj })
+                    this.$refs['baseInfoform'].clearValidate(['swiper'])
                 };
 
             },
             coverImgUrl_handleSuccess(imgObj) {
-                this.product.coverImgUrl = imgObj.imgUrl
-                this.$refs['baseInfoform'].clearValidate(['coverImgUrl'])
+                this.product.coverImg = imgObj.imgUrl
+                this.$refs['baseInfoform'].clearValidate(['coverImg'])
             },
             deletePictrue(index) {
                 this.product.pics.splice(index, 1)
@@ -140,10 +140,10 @@
             },
             /*改变图片的排序*/
             changePicsSort() {
-                this.product.pics.map((obj, index) => {
+                this.product.swiper.map((obj, index) => {
                     obj.imgSort = index
                 })
-                console.log('this.product.pics', this.product.pics)
+                console.log('this.product.swiper', this.product.swiper)
             },
             validate() {
                 let flag = false

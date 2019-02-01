@@ -15,8 +15,8 @@
 
   import {upload, dialog} from "element-ui"
   import {IMG_HOST} from 'api/config'
-  //import UploadOSSUtil from 'utils/uploadOSS'
-  import UploadCOSUtil from 'utils/uploadCos'
+  import UploadOSSUtil from 'utils/uploadOSS'
+  //import UploadCOSUtil from 'utils/uploadCos'
   export default {
     data(){
       return {
@@ -28,7 +28,7 @@
           imgSort: 0
         },
         showFileList: false,
-        upload: new UploadCOSUtil()
+        upload: new UploadOSSUtil()
       }
     },
     props: ['index'],

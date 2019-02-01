@@ -77,8 +77,8 @@
                              label=""></el-input-number>
             <!--<el-input ></el-input>-->
           </el-form-item>
-          <el-form-item label="市场价" :prop="'skuList.' + index + '.oldPrice'" :rules="rules.oldPrice">
-            <el-input v-model.number="sku.oldPrice" :disabled="num_disabled()"></el-input>
+          <el-form-item label="市场价" :prop="'skuList.' + index + '.marketPrice'" :rules="rules.marketPrice">
+            <el-input v-model.number="sku.marketPrice" :disabled="num_disabled()"></el-input>
           </el-form-item>
 
         </el-col>
@@ -179,7 +179,7 @@
             {validator: validatePrice, trigger: 'blur'},
             {validator: validatePriceNumLimit, trigger: 'blur'},
           ],
-          oldPrice: [
+          marketPrice: [
             // {type: 'number', message: '市场价必须为数字', trigger: 'blur'},
             {validator: validateMarketPrice, trigger: 'blur'},
 
@@ -198,7 +198,7 @@
       addSpecifications(){
         this.skuList.push({
           barcode: '',
-          oldPrice: 0,
+          marketPrice: 0,
           price: 0,
           productId: 0,
           coverImg: "http://shop-1256826840.pictj.myqcloud.com/test/9d0ccc1722ba9c9c062e2bce7bd0b4fddccf75e3786ff-WUVwdC_fw658.jpg",
