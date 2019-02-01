@@ -27,13 +27,6 @@
         </el-menu-item-group>
       </el-submenu>
 
-
-      <!-- 模板管理 -->
-      <router-link :to='{name : "template"}'>
-        <el-menu-item index="template">模板管理</el-menu-item>
-      </router-link>
-
-
       <!-- 商品管理 -->
       <el-submenu index="waresManage">
         <template slot="title">
