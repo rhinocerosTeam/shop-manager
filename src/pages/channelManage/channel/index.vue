@@ -44,7 +44,7 @@
   export default {
     data() {
       return {
-        tabPosition:'home1',
+        tabPosition:'home',
         channelData:[
           {
               id:1,

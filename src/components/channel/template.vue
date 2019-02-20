@@ -21,6 +21,7 @@
       </div>
 
       <div class="textDesc">
+        <el-button type="danger" plain @click="deleteButton()">删除</el-button>
         图片大小：750*370
       </div>
     </div>
@@ -39,6 +40,7 @@
         </div>
       </div>
       <div class="textDesc">
+        <el-button type="danger" plain @click="deleteButton()">删除</el-button>
         图片大小：左：370*530 右 ：373*260
       </div>
     </div>
@@ -54,6 +56,7 @@
         </div>
       </div>
       <div class="textDesc">
+        <el-button type="danger" plain @click="deleteButton()">删除</el-button>
         图片大小： 370*530
       </div>
     </div>
@@ -64,6 +67,7 @@
         <img :src="onePic[0].imgSrc" class="autoImg" v-if="onePic[0].imgSrc">
       </div>
       <div class="textDesc">
+        <el-button type="danger" plain @click="deleteButton()">删除</el-button>
         图片大小： 750* 200，高度>=200
       </div>
     </div>
@@ -86,7 +90,8 @@
         </ul>
       </div>
       <div class="textDesc">
-
+          产品格子图：
+          <el-button type="danger" plain @click="deleteButton()">删除</el-button>
       </div>
 
 
@@ -181,7 +186,7 @@
      * tempdata 指 模板的data
      * **/
     props: [
-      'type','tempdata'
+      'type','tempdata','index'
     ],
     computed: {
       showAll(){
@@ -193,6 +198,9 @@
       }
     },
     methods:{
+      deleteButton(){
+        this.$emit("delete",this.index)
+      },
       handleClose(){
         this.dialogVisible = false
         this.dialogPic.obj.imgSrc = this.dialogPic.imgSrc
@@ -230,3 +238,12 @@
     }
   }
 </script>
+<style lang="less">
+.el-dialog{
+  z-index: 2005;
+}
+.v-modal{
+  z-index: 10!important;
+}
+</style>
+
