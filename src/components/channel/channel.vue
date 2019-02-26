@@ -14,16 +14,17 @@
   <div>
     <div class="box">
       <div class="cont">
-          <template-box v-for="obj,index in list" :type="obj.type" :tempdata="obj.data" :index="index" @delete="deleteT"></template-box>
+          <template-box v-for="(obj,index) in clist" :type="obj.type" :tempdata="obj.data" :index="index" @delete="deleteT"></template-box>
           <div class="addTemplate">
             <el-select v-model="tempDescIndex" placeholder="请选择">
-              <el-option v-for="item,index in templateDesc" :key="index" :label="item.value" :value="index">
+              <el-option v-for="(item,index) in templateDesc" :key="index" :label="item.value" :value="index">
               </el-option>
             </el-select>
             <el-button type="info" @click="addTemplate">添加模板</el-button>
           </div>
           <div>
-            <el-button type="success"  style="width:425px" @click="saveTemplate">保存模板</el-button>
+            <el-button type="success"  style="width:425px" @click="saveTemplate()">保存模板</el-button>
+            <el-button type="success"  style="width:425px" @click="closeTemplate()">关闭</el-button>
           </div>
       </div>
     </div>
@@ -36,41 +37,47 @@
   import templateBox from 'components/channel/template'
   import {channel} from "constants/channel";
   export default {
+    props:[
+        'clist'
+    ],
     data() {
       return {
-        list: [
-          {
-            type: 'swiper',
-            data: [
-              {
-                imgSrc: "https://bangjism-test.oss-cn-beijing.aliyuncs.com/1548667059601_.png",
-                location: "1111"
-              },
-              {
-                imgSrc: "https://bangjism-test.oss-cn-beijing.aliyuncs.com/1548667059601_.png",
-                location: "1111"
-              },
-              {
-                imgSrc: "https://bangjism-test.oss-cn-beijing.aliyuncs.com/1548667059601_.png",
-                location: "1111"
-              }
-            ]
-          }
-        ],
+        // list: [
+        //   {
+        //     type: 'swiper',
+        //     data: [
+        //       {
+        //         imgSrc: "https://bangjism-test.oss-cn-beijing.aliyuncs.com/1548667059601_.png",
+        //         location: "1111"
+        //       },
+        //       {
+        //         imgSrc: "https://bangjism-test.oss-cn-beijing.aliyuncs.com/1548667059601_.png",
+        //         location: "1111"
+        //       },
+        //       {
+        //         imgSrc: "https://bangjism-test.oss-cn-beijing.aliyuncs.com/1548667059601_.png",
+        //         location: "1111"
+        //       }
+        //     ]
+        //   }
+        // ],
         templateDesc:channel.templateDesc,
         tempDescIndex:'',
       };
     },
     methods:{
       deleteT(index){
-        this.list.splice(index,1)
+        this.clist.splice(index,1)
       },
       addTemplate(){
           let temp = this.templateDesc[this.tempDescIndex]
-          this.list.push({
+          this.clist.push({
               type: temp.label,
               data:temp.default
           })
+      },
+      closeTemplate(){
+        this.$emit("close")
       },
       saveTemplate(){
         let flag = true
@@ -85,10 +92,11 @@
             }
           })
           if(flag){
-              let content = JSON.stringify(this.list)
+              let content = JSON.stringify(this.clist)
+              this.$emit("save")
               console.log("模板为--->",content)
           }
-          
+
 
       }
 

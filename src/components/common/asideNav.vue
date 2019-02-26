@@ -24,6 +24,9 @@
           <router-link :to='{name : "channelManage"}'>
             <el-menu-item index="channelManage">频道管理</el-menu-item>
           </router-link>
+          <router-link :to='{name : "addChannel"}'>
+            <el-menu-item index="addChannel">增加频道</el-menu-item>
+          </router-link>
         </el-menu-item-group>
       </el-submenu>
 
