@@ -8,7 +8,7 @@
                 <el-input v-model="cData.path"></el-input>
             </el-form-item>
             <el-form-item label="是否为主页">
-                <el-switch v-model="cData.isHome"  active-text="是" inactive-text="否"></el-switch>
+                <el-switch v-model="isHome"  active-text="是" inactive-text="否"></el-switch>
             </el-form-item>
             <el-form-item>
                 
@@ -28,12 +28,26 @@ export default {
             cData:{
                 name:"",
                 path:"",
-                isHome:false,
-                templates:[]
-            }
+                isHome:"0",
+                templates:"[]"
+            },
+            isHome:false,
         }
     },
     components: {'el-switch':Switch},
+    
+    mounted(){
+        this.init()
+    },
+    watch:{
+       isHome(){
+           if(this.isHome){
+               this.cData.isHome = "1"
+           }else{
+               this.cData.isHome = "0"
+           }
+       } 
+    },
     methods:{
         init(){
             if(this.id){
@@ -44,12 +58,16 @@ export default {
             api.getChannel({id:this.id}).then(res=>{
                 let data = api.parse(res);
                 if (res.code == 1000) {
+                    if(data.isHome == "1"){
+                        this.isHome = true
+                    }
                     this.cData = data
                 }
             })
         },
         save(){
             let fun = {}
+            
             if(this.cData.id){
                 fun = api.eidtChannel(this.cData)
             }else{
@@ -71,9 +89,6 @@ export default {
                 }
             })
             
-
-
-            console.log(this.cData)
         }
     }
 }

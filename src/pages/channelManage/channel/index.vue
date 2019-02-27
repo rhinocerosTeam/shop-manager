@@ -24,7 +24,7 @@
         <template slot-scope="scope">
           <el-button @click="openTemplateDialog(scope.row)" type="text" size="small">查看模板</el-button>
           <el-button @click="goEdit_handler(scope.row)" type="text" size="small">编辑</el-button>
-          <el-button type="text" size="small">删除</el-button>
+          <el-button @click="deleteChannel(scope.row)" type="text" size="small">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -34,7 +34,7 @@
     </el-pagination>
 
     <div v-if="showTemplateDialog" >
-      <channel-box :clist="templateData" @close="closeTemplateDialog" @save="saveTemplateDialog"></channel-box>
+      <channel-box :clist="templateData.templates" @close="closeTemplateDialog" @save="saveTemplateDialog"></channel-box>
     </div>
 
   </div>
@@ -46,7 +46,7 @@
     data() {
       return {
         showTemplateDialog:false,
-        templateData:{},
+        templateData:{}, // 模板数据
         currentPage: 1, //当前页数
         totalCount: 0, //总页数
         pageSize: 10, //每页多少条
@@ -62,6 +62,9 @@
 
       };
     },
+    components: {
+      'channel-box':channelBox
+    },
     watch: {
         currentPage: {
             handler() {
@@ -69,6 +72,9 @@
             },
             deep: true
         }
+    },
+     mounted(){
+      this.api_getChannel()
     },
     methods:{
       /** 
@@ -89,15 +95,37 @@
             if(!row.templates){
               row.templates = []
             }
-            this.templateData = row.templates
+            this.templateData = row
             this.showTemplateDialog = true
         },
+        /**
+         * 关闭模板的对话框
+         *  */
         closeTemplateDialog(){
             this.showTemplateDialog = false
         },
+        /**
+         * 保存模板信息
+         *  */
         saveTemplateDialog(){
+          let datareq = {
+            ...this.templateData
+          }
+          datareq.templates = JSON.stringify(datareq.templates)
+          api.eidtChannel(datareq).then(res=>{
+                let data = api.parse(res);
+                if (res.code == 1000) {
+                    this.$message({
+                        message: "成功",
+                        type: "success"
+                    });
+                }
+            })
           this.showTemplateDialog = false
         },
+        /**
+         * api 分页得到频道信息
+         */
         api_getChannel(){
             api.getChannelList({
               pageSize:this.pageSize,
@@ -105,17 +133,35 @@
             }).then(res=>{
                 let data = api.parse(res);
                 if (res.code == 1000) {
+                    for(let dObj of data.list){
+                      console.log(dObj)
+                        dObj.templates = JSON.parse(dObj.templates)
+                    }
                     this.channelData = data.list
                     this.totalCount = data.total;
                 }
             })
         },
+        /**
+         * api 删除频道
+         *  */ 
+        deleteChannel(row){
+          if(row.id){
+              api.deleteChannel({
+                id:row.id
+              }).then(res=>{
+                  let data = api.parse(res);
+                  if (res.code == 1000) {
+                      this.api_getChannel()
+                      this.$message({
+                          message: "成功",
+                          type: "success"
+                      });
+                  }
+              })
+          }
+        }
     },
-    mounted(){
-      this.api_getChannel()
-    },
-    components: {
-      'channel-box':channelBox
-    },
+    
   }
 </script>

@@ -81,21 +81,19 @@
       },
       saveTemplate(){
         let flag = true
-          if(this.list.length == 0){
-              this.$alert("请添加模板")
+        if(this.clist.length == 0){
+            this.$alert("请添加模板")
+        }
+        this.clist.map((obj)=>{
+          if(obj.data.some((objdd)=>{return objdd.imgSrc == ''})){
+            this.$alert("模板图片不能为空")
+            flag = false
+            return
           }
-          this.list.map((obj)=>{
-            if(obj.data.some((objdd)=>{return objdd.imgSrc == ''})){
-              this.$alert("模板图片不能为空")
-              flag = false
-              return
-            }
-          })
-          if(flag){
-              let content = JSON.stringify(this.clist)
-              this.$emit("save")
-              console.log("模板为--->",content)
-          }
+        })
+        if(flag){
+            this.$emit("save")
+        }
 
 
       }
