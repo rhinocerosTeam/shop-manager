@@ -23,6 +23,9 @@
       <div class="textDesc">
         <el-button type="danger" plain @click="deleteButton()">删除</el-button>
         图片大小：750*370
+        <p v-for="(obj,index) in swiper">
+          图片{{index}}：跳转方式 {{obj.type == 1?"产品":"渠道"}}  {{obj.type == 1?"产品id":"渠道路径"}} {{obj.location}}
+        </p>
       </div>
     </div>
 
@@ -42,6 +45,9 @@
       <div class="textDesc">
         <el-button type="danger" plain @click="deleteButton()">删除</el-button>
         图片大小：左：370*530 右 ：373*260
+        <p v-for="(obj,index) in threePic">
+          图片{{index}}：跳转方式 {{obj.type == 1?"产品":"渠道"}}  {{obj.type == 1?"产品id":"渠道路径"}} {{obj.location}}
+        </p>
       </div>
     </div>
 
@@ -58,6 +64,9 @@
       <div class="textDesc">
         <el-button type="danger" plain @click="deleteButton()">删除</el-button>
         图片大小： 370*530
+        <p v-for="(obj,index) in twoPic">
+          图片{{index}}: 跳转方式 {{obj.type == 1?"产品":"渠道"}}  {{obj.type == 1?"产品id":"渠道路径"}} {{obj.location}}
+        </p>
       </div>
     </div>
 
@@ -69,6 +78,9 @@
       <div class="textDesc">
         <el-button type="danger" plain @click="deleteButton()">删除</el-button>
         图片大小： 750* 200，高度>=200
+        <p v-for="(obj,index) in onePic">
+          图片{{index}}：跳转方式 {{obj.type == 1?"产品":"渠道"}}  {{obj.type == 1?"产品id":"渠道路径"}} {{obj.location}}
+        </p>
       </div>
     </div>
 
@@ -92,6 +104,7 @@
       <div class="textDesc">
           产品格子图：
           <el-button type="danger" plain @click="deleteButton()">删除</el-button>
+         
       </div>
 
 
@@ -105,7 +118,12 @@
       <div>
         <p>图片路径：</p>
         <el-input v-model="dialogPic.imgSrc" placeholder="请输入内容"></el-input>
-        <p>跳转链接：</p>
+        <p>跳转类型：</p>
+        <div>
+          <el-radio v-model="dialogPic.type" label="1">产品</el-radio>
+          <el-radio v-model="dialogPic.type" label="2">频道</el-radio>
+        </div>
+        <p>跳转链接/产品编号：</p>
         <el-input v-model="dialogPic.location" placeholder="请输入内容"></el-input>
       </div>
       <span slot="footer" class="dialog-footer">
@@ -132,48 +150,58 @@
         dialogPic:{
           obj:{},
           imgSrc: "", // 图片链接
+          type:"1", // 1 产品 2 频道
           location: "" // 跳转链接
         },
         swiper: [
           {
             imgSrc: "", // 图片链接
+            type:"1", // 1 产品 2 频道
             location: "" // 跳转链接
           },
           {
             imgSrc: "", // 图片链接
+            type:"1", // 1 产品 2 频道
             location: "" // 跳转链接
           },
           {
             imgSrc: "", // 图片链接
+            type:"1", // 1 产品 2 频道
             location: "" // 跳转链接
           }
         ],
         threePic: [
           {
             imgSrc: "", // 图片链接
+            type:"1", // 1 产品 2 频道
             location: "" // 跳转链接
           },
           {
             imgSrc: "", // 图片链接
+            type:"1", // 1 产品 2 频道
             location: "" // 跳转链接
           },
           {
             imgSrc: "", // 图片链接
+            type:"1", // 1 产品 2 频道
             location: "" // 跳转链接
           }
         ],
         twoPic: [
           {
             imgSrc: "", // 图片链接
+            type:"1", // 1 产品 2 频道
             location: "" // 跳转链接
           }, {
             imgSrc: "", // 图片链接
+            type:"1", // 1 产品 2 频道
             location: "" // 跳转链接
           }
         ],
         onePic: [
           {
             imgSrc: "", // 图片链接
+            type:"1", // 1 产品 2 频道
             location: "" // 跳转链接
           }
         ],
@@ -204,11 +232,13 @@
       handleClose(){
         this.dialogVisible = false
         this.dialogPic.obj.imgSrc = this.dialogPic.imgSrc
+        this.dialogPic.obj.type = this.dialogPic.type
         this.dialogPic.obj.location = this.dialogPic.location
       },
       openDialog(obj){
 
         this.dialogPic.imgSrc = obj.imgSrc
+        this.dialogPic.type =obj.type
         this.dialogPic.location = obj.location
         this.dialogPic.obj = obj
 
