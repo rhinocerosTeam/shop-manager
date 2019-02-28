@@ -26,7 +26,7 @@
     <!--三张图片-->
     <div class="templateBOX" v-if="showAll || type ==  templateType.threePic">
       <div class="threeImg templateBOX">
-        <div class="one" v-for="(obj,index) in threePic" :key="'threePic_1_'+index" @click="openDialog(obj)">
+        <div :class="{'one':index == 0,'two':index == 1,'three':index == 2}" v-for="(obj,index) in threePic" :key="'threePic_1_'+index" @click="openDialog(obj)">
           <img :src="obj.imgSrc" class="fullImg" v-if="obj.imgSrc">
         </div>
       </div>
@@ -41,8 +41,8 @@
 
     <!--两张图片-->
     <div class="templateBOX" v-if="showAll || type ==  templateType.twoPic">
-      <div class="twoImg" v-for="(obj,index) in twoPic" :key="'twoPic_1_'+index" @click="openDialog(obj)">
-        <div class="one" @click="openDialog(obj)">
+      <div class="twoImg" >
+        <div :class="{'one':index == 0,'two':index == 1}" v-for="(obj,index) in twoPic" :key="'twoPic_1_'+index" @click="openDialog(obj)">
           <img :src="obj.imgSrc" class="fullImg" v-if="obj.imgSrc">
         </div>
         
@@ -171,6 +171,13 @@
     computed: {
       showAll(){
         if (!this.type) {
+
+          for(let cobj of channel.templateDesc){
+            console.log("---",cobj)
+
+            this[cobj.label] = cobj.default
+          }
+
           return true
         } else {
           return false
