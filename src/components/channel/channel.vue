@@ -104,7 +104,9 @@
     },
   }
 </script>
-<style>
+<style lang="scss" scoped>
+
+
   .box{
     width: 100%;
     height: 100%;
