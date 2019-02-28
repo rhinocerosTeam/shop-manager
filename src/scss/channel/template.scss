@@ -1,123 +1,121 @@
-.templateCont{
-
-  .templateBOX{
-    >div{
-      float: left;
+.templateCont {
+    .templateBOX {
+        >div {
+            float: left;
+        }
+        .textDesc {
+            margin-left: 20px;
+        }
+        .fullImg {
+            width: 100%;
+            height: 100%;
+        }
+        .autoImg {
+            width: 100%;
+        }
+        &:after {
+            content: '';
+            clear: both;
+            display: block;
+        }
     }
-    .textDesc{
-      margin-left:20px;
+    .swiper,
+    .swiper-container {
+        width: 375px;
+        height: 185px;
+        background-color: #c1c1c1;
     }
-    .fullImg{
-      width:100%;
-      height:100%;
+    .threeImg {
+        position: relative;
+        width: 375px;
+        height: 265px;
+        .one {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 185px;
+            height: 265px;
+            background-color: #c1c1c1;
+        }
+        .two {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 185px;
+            height: 130px;
+            background-color: #c1c1c1;
+        }
+        .three {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 185px;
+            height: 130px;
+            background-color: #c1c1c1;
+        }
     }
-    .autoImg{
-      width:100%;
+    .twoImg {
+        position: relative;
+        width: 375px;
+        height: 265px;
+        .one,
+        .two {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 188px;
+            height: 265px;
+            background-color: #c1c1c1;
+        }
+        .two {
+            left: auto;
+            right: 0;
+            background-color: #dcdcdc;
+        }
     }
-    &:after{
-      content:'';
-      clear: both;
-      display: block;
-
+    .oneImg {
+        width: 375px;
+        min-height: 200px;
+        background-color: #c1c1c1;
     }
-  }
-
-  .swiper,.swiper-container{
-    width: 375px;
-    height:185px;
-    background-color: #c1c1c1;
-  }
-  .threeImg{
-    position: relative;
-    width:375px;
-    height:265px;
-    .one{
-      position: absolute;
-      left:0;
-      top:0;
-      width:185px;
-      height:265px;
-      background-color: #c1c1c1;
+    .productCont {
+        width: 400px;
+        li {
+            width: 185px;
+            height: 228px;
+            float: left;
+            &:nth-of-type(2n) {
+                margin-left: 5px;
+            }
+            img {
+                width: 100%;
+                height: 120px;
+                background-color: grey;
+                display: block;
+            }
+            .name {
+                padding-left: 15px;
+                margin-top: 15px;
+                font-size: 16px;
+                color: #5b5b5b;
+            }
+            .desc {
+                padding-left: 15px;
+                font-size: 12px;
+                color: #adadad;
+                margin: 5px 0;
+            }
+            .price {
+                padding-left: 15px;
+                font-size: 16px;
+                color: #ff7b45;
+            }
+            .price-old {
+                padding-left: 15px;
+                font-size: 12px;
+                color: #a5a5a5;
+                text-decoration: line-through
+            }
+        }
     }
-    .two{
-      position: absolute;
-      right:0;
-      top:0;
-      width:185px;
-      height:130px;
-      background-color: #c1c1c1;
-    }
-    .three{
-      position: absolute;
-      right:0;
-      bottom:0;
-      width:185px;
-      height:130px;
-      background-color: #c1c1c1;
-    }
-  }
-  .twoImg{
-    position: relative;
-    width:375px;
-    height:265px;
-
-    .one,.two{
-      position: absolute;
-      left:0;
-      top:0;
-      width:188px;
-      height:265px;
-      background-color: #c1c1c1;
-    }
-    .two{
-      left:auto;
-      right:0;
-      background-color: #dcdcdc;
-    }
-  }
-  .oneImg{
-    width:375px;
-    min-height:200px;
-    background-color: #c1c1c1;
-  }
-  .productCont{
-    li{
-      width:185px;
-      height:228px;
-      float: left;
-      &:nth-of-type(2n){
-        margin-left: 5px;
-      }
-      img{
-        width:100%;
-        height:120px;
-        background-color: grey;
-        display: block;
-      }
-      .name{
-        padding-left:15px;
-        margin-top:15px;
-         font-size:16px;
-         color: #5b5b5b;
-       }
-      .desc{
-        padding-left:15px;
-        font-size:12px;
-        color: #adadad;
-        margin:5px 0;
-      }
-      .price{
-        padding-left:15px;
-        font-size:16px;
-        color: #ff7b45;
-      }
-      .price-old{
-        padding-left:15px;
-        font-size:12px;
-        color: #a5a5a5;
-        text-decoration:line-through
-      }
-    }
-  }
-
 }
